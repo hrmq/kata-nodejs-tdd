@@ -1,14 +1,14 @@
 const request = require('supertest');
 const app = require('../../app');
-const newData = require('../mock-data/new-todo.json');
+const newTodo = require('../mock-data/new-todo.json');
 
-const endpoint = '/todo';
+const endpointUrl = '/todos/';
 
-describe(endpoint, () => {
-  it('POST ' + endpoint, async () => {
-    const response = await request(app).post(endpoint).send(newData);
+describe(endpointUrl, () => {
+  it('POST ' + endpointUrl, async () => {
+    const response = await request(app).post(endpointUrl).send(newTodo);
     expect(response.statusCode).toBe(201);
-    expect(response.body.title).toBe(newData.title);
-    expect(response.body.done).toBe(newData.done);
+    expect(response.body.title).toBe(newTodo.title);
+    expect(response.body.done).toBe(newTodo.done);
   });
 });
