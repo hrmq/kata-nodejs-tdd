@@ -2,6 +2,8 @@ const TodoController = require('../../controllers/todo.controller');
 const TodoModel = require('../../models/todo.model');
 const httpMocks = require('node-mocks-http');
 
+const newTodo = require('../mock-data/new-todo.json');
+
 TodoModel.create = jest.fn();
 
 describe('TodoController.createTodo', () => {
@@ -13,8 +15,9 @@ describe('TodoController.createTodo', () => {
     const req = httpMocks.createRequest();
     const res = httpMocks.createResponse();
     const next = null;
+    req.body = newTodo;
 
     TodoController.createTodo(req, res, next);
-    expect(TodoModel.create).toBeCalled();
+    expect(TodoModel.create).toBeCalledWith(newTodo);
   });
 });
