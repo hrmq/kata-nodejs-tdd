@@ -38,9 +38,9 @@ describe('TodoController.createTodo', () => {
   });
 
   it('should handle errors', async () => {
-    const errorMessage = { message: 'Done propery missing' };
+    const errorMessage = { message: 'Done property missing' };
     const rejectedPromise = Promise.reject(errorMessage);
-    TodoModel.create.mockReturnValue = rejectedPromise;
+    TodoModel.create.mockReturnValue(rejectedPromise);
     await TodoController.createTodo(req, res, next);
     expect(next).toBeCalledWith(errorMessage);
   });

@@ -5,7 +5,6 @@ exports.createTodo = async function (req, res, next) {
     const todoModel = await TodoModel.create(req.body);
     res.status(201).json(todoModel);
   } catch (err) {
-    console.log(err, 'djsaljld');
-    next(err.message);
+    next(err);
   }
 };

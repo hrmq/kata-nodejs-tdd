@@ -10,6 +10,10 @@ app.use(express.json());
 
 app.use('/todos', todoRouter);
 
+app.use((error, req, res, next) => {
+  res.status(500).json({ message: error.message });
+});
+
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
